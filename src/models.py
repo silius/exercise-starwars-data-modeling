@@ -13,10 +13,14 @@ class User(Base):
     # Here we define columns for the table User
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
+    favoritecharacterid = Column(Integer, ForeignKey('user.id'))
+    favoriteplanetid = Column(Integer, ForeignKey('planet.id'))
     name = Column(String(250), nullable=False)
     lastname = Column(String(250), nullable=False)
     username = Column(String(40), nullable=False)
     email = Column(String(250), nullable=False)
+    characters = relationship("Character")
+    planets = relationship("Planet")
 
 class Character(Base):
     __tablename__ = "character"
